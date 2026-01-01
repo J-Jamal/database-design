@@ -1,0 +1,22 @@
+@startuml
+
+entity User {
+    * id varchar(100) <<PK>>
+    --
+    * name varchar(100)
+}
+
+entity Notification {
+    * id INT auto increment <<PK>>
+    --
+    * title varchar(255)
+    * detail TEXT
+    * created_at timestamp
+    --
+    user_id varchar(100) <<FK>>
+
+}
+
+User ||--o Notification
+
+@enduml
