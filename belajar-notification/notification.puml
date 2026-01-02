@@ -14,9 +14,28 @@ entity Notification {
     * created_at timestamp
     --
     user_id varchar(100) <<FK>>
+    category_id varchar(100) <<FK>>
 
 }
 
-User ||--o Notification
+entity Category {
+    * id varchar(100) <<PK>>
+    --
+    * name varchar(100)
+}
+
+entity NotificationRead {
+    * id INT AUTO INCREMENT  <<PK>>
+    --
+    * is_read boolean
+    --
+    * notification_id INT <<FK>>
+    * user_id varchar(100) <<FK>>
+}
+
+User ||--o{ Notification
+Category ||--o{ Notification
+Notification ||--o{ NotificationRead
+User ||--o{ NotificationRead
 
 @enduml
